@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Registro Animado</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex items-center justify-center">
+
+  <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md border border-gray-700">
+    <h2 id="form-title" class="text-3xl font-bold text-center text-gray-100 mb-6 animate__animated animate__fadeInDown">Iniciar Sesión</h2>
+
+    <!-- Login Form -->
+    <form id="login-form" class="space-y-5 animate__animated animate__fadeIn">
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-1">Correo electrónico</label>
+        <input type="email" required class="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-xl transition duration-300 focus:ring-2 focus:ring-blue-500 focus:scale-105 transform placeholder-gray-400" placeholder="ejemplo@correo.com"/>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-1">Contraseña</label>
+        <div class="relative">
+          <input id="login-password" type="password" required class="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-xl transition duration-300 focus:ring-2 focus:ring-blue-500 focus:scale-105 transform placeholder-gray-400" placeholder="••••••••"/>
+          <button type="button" onclick="togglePassword('login-password')" class="absolute right-3 top-2 text-gray-400 hover:text-blue-400">
+            👁️
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+        Iniciar sesión
+      </button>
+
+      <p class="text-sm text-center text-gray-400">¿No tienes una cuenta? 
+        <a href="#" onclick="showRegister()" class="text-blue-400 hover:underline">Regístrate</a>
+      </p>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" class="space-y-5 hidden animate__animated">
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-1">Correo electrónico</label>
+        <input type="email" required class="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-xl transition duration-300 focus:ring-2 focus:ring-blue-500 focus:scale-105 transform placeholder-gray-400" placeholder="ejemplo@correo.com"/>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-1">Contraseña</label>
+        <div class="relative">
+          <input id="register-password" type="password" required class="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-xl transition duration-300 focus:ring-2 focus:ring-blue-500 focus:scale-105 transform placeholder-gray-400" placeholder="••••••••"/>
+          <button type="button" onclick="togglePassword('register-password')" class="absolute right-3 top-2 text-gray-400 hover:text-blue-400">
+            👁️
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+        Registrarse
+      </button>
+
+      <p class="text-sm text-center text-gray-400">¿Ya tienes una cuenta? 
+        <a href="#" onclick="showLogin()" class="text-blue-400 hover:underline">Inicia sesión</a>
+      </p>
+    </form>
+
+  </div>
+
+<script>
+  function togglePassword(inputId) {
+    const password = document.getElementById(inputId);
+    password.type = password.type === 'password' ? 'text' : 'password';
+  }
+
+  function showRegister() {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const title = document.getElementById('form-title');
+
+    // Animación de salida del login
+    loginForm.classList.remove('animate__fadeIn');
+    loginForm.classList.add('animate__fadeOutLeft');
+
+    setTimeout(() => {
+      loginForm.classList.add('hidden');
+      loginForm.classList.remove('animate__fadeOutLeft');
+
+      // Mostrar y animar el registro
+      registerForm.classList.remove('hidden');
+      registerForm.classList.add('animate__fadeInRight');
+
+      title.textContent = 'Crear Cuenta';
+    }, 400);
+  }
+
+  function showLogin() {
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const title = document.getElementById('form-title');
+
+    // Animación de salida del registro
+    registerForm.classList.remove('animate__fadeInRight');
+    registerForm.classList.add('animate__fadeOutRight');
+
+    setTimeout(() => {
+      registerForm.classList.add('hidden');
+      registerForm.classList.remove('animate__fadeOutRight');
+
+      // Mostrar y animar el login
+      loginForm.classList.remove('hidden');
+      loginForm.classList.add('animate__fadeInLeft');
+
+      title.textContent = 'Iniciar Sesión';
+    }, 400);
+  }
+</script>
+
+</body>
+</html>
